@@ -18,13 +18,14 @@ for items in itemsToRename:
 	if os.path.isfile(items) == True:
 		# Removes file extension so Regex will work
 		items = os.path.splitext(items)[0]
-		if '[-_.]+'.test(items) == False:
+		# If no regex is found, continue to next file
+		if regex.search(items) == None:
 			continue
 		else:
 			regexSplit = re.split('[-_.]+', items)
 			newName = ' '.join(regexSplit)
 			print(newName)
-			os.rename(items, newName)
+			#~ os.rename(items, newName)
 	elif os.path.isdir(items) == True:
 		continue
 		print('----')
